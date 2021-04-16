@@ -9,26 +9,29 @@ public class CourseSessionController {
 
     ArrayList<Student> students = new ArrayList<Student>();
     ArrayList<CourseSession> courses = new ArrayList<CourseSession>();
-
+    
 
     public void addCourse(CourseSession courseSession){
         courses.add(courseSession);
     }
 
-    public int getNumOfCourses(){return courses.size();}
+    public int getNumOfCourses(){
+    	return courses.size();
+    }
+    
     public int getNumOfStudents() {
         return students.size();
     }
-
 
     public void enrollStudent(Student student){
         students.add(student);
     }
 
-    public ArrayList<Student> getTotalStudents() {
-        return students;
+    public Student getStudents(int index){
+    	return students.get(index);
     }
-    public ArrayList<CourseSession> getTotalCourses() {
-        return courses;
+    
+    public CourseSession getCourses(int index) {
+    	return courses.get(index);
     }
 }

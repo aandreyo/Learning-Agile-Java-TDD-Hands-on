@@ -6,46 +6,52 @@ import StudentPackage.controller.*;
 import java.util.ArrayList;
 
 public class CourseSessionTest extends  junit.framework.TestCase{
+	private CourseSession courseSession1,courseSession2;
+	private Student student1,student2;
+	private CourseSessionController courseSessionController;
+	private String dept,deptNum;
+	
+	
+	
+	public void setUp() {
+		 	courseSessionController = new CourseSessionController();   
+		 	courseSession1 = new CourseSession("ENGL","101");
+	        courseSession2 = new CourseSession("MATH","101");
+	        
+	        student1 = new Student(1,"Jane","Doe",0);
+	        student2 = new Student(2,"John","Doe",0);
+	        
+	        courseSessionController.enrollStudent(student1);
+	        courseSessionController.enrollStudent(student2);
+	        
+	        courseSessionController.addCourse(courseSession1);
+	        courseSessionController.addCourse(courseSession2);
+	        
+	        dept =  courseSession1.getDepartment();
+	        deptNum = courseSession1.getNumber();
+	}
+	
 
     public void testCreate(){
-        CourseSession courseSession = new CourseSession("ENGL","101");
-        CourseSessionController courseSessionController = new CourseSessionController();
-        String dept =  courseSession.getDepartment();
-        String deptNum = courseSession.getNumber();
-
-        assertEquals("ENGL",dept);
-        assertEquals("101", deptNum);
-        assertEquals(0,courseSessionController.getNumOfStudents());
+        
+		  assertEquals("ENGL",dept);
+		  assertEquals("101", deptNum);
+		  assertEquals(2,courseSessionController.getNumOfStudents());
 
     }
 
 
     public void testEnrolledStudents(){
-        CourseSessionController courseSessionController = new CourseSessionController();
-        ArrayList<Student> totalStudents = courseSessionController.getTotalStudents();
-        ArrayList<CourseSession> totalCourses = courseSessionController.getTotalCourses();
 
-        CourseSession courseSession1 = new CourseSession("ENGL","101");
-        courseSessionController.addCourse(courseSession1);
-        CourseSession courseSession2 = new CourseSession("MATH","101");
-        courseSessionController.addCourse(courseSession2);
+        assertEquals(student1,courseSessionController.getStudents(0));
+        assertEquals(student2,courseSessionController.getStudents(1));
 
-        Student student1 = new Student(1,"Jane","Doe",0);
-        courseSessionController.enrollStudent(student1);
-        Student student2 = new Student(2,"John","Doe",0);
-        courseSessionController.enrollStudent(student2);
-        //added comment
-
-        assertEquals(2,totalCourses.size());
-        assertEquals(2,totalStudents.size());
-        assertEquals(student1,totalStudents.get(0));
-        assertEquals(student2,totalStudents.get(1));
-
-        for (CourseSession totalCourse : totalCourses) {
-            System.out.println(totalCourse);
+        for(int i=0; i<courseSessionController.getNumOfCourses(); i++) {
+        	System.out.println(courseSessionController.getCourses(i));
         }
-        for (Student totalStudent : totalStudents) {
-            System.out.println(totalStudent);
+        
+        for(int i=0; i<courseSessionController.getNumOfStudents(); i++) {
+        	System.out.println(courseSessionController.getStudents(i));
         }
 
 
