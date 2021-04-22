@@ -1,29 +1,31 @@
 package Exercises.Exercise_1;
 
-import Exercises.Exercise_1.Pawn;
+
 
 public class PawnTest extends junit.framework.TestCase{
-
-
-    public void testCreate(){
-        Pawn pawn = new Pawn();
-        /*
-         * First test Color
-         *
-         * */
-        pawn.setColor("White");
-        String firstColor = pawn.getColor();
-        String testColor = "White";
-        assertEquals(testColor,firstColor);
-
-        /*
-        * Second test color
-        *
-        * */
-        pawn.setColor("Black");
-        String secondColor = pawn.getColor();
-        String testColor2 = "Black";
-        assertEquals(testColor2,secondColor);
+	Pawn firstPlayer = new Pawn();
+	Pawn secondPlayer = new Pawn();
+	String black = "Black";
+    String white = "White";
+    
+    private String COLOR_WHITE;
+    private String COLOR_BLACK;
+    
+    
+    
+	public void setUp(){     
+		COLOR_WHITE = Pawn.WHTE;
+		COLOR_BLACK = Pawn.BLCK;
+		firstPlayer.setColor(COLOR_WHITE);
+		secondPlayer.setColor(COLOR_BLACK);
+		
+	}
+	
+    public void testPlayerColor(){
+           
+        assertEquals(white,firstPlayer);
+        assertEquals(black,secondPlayer);
+       
     }
 
 }
