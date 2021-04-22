@@ -2,15 +2,14 @@ package StudentPackage.controller;
 
 import StudentPackage.models.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class CourseSessionController {
 
     ArrayList<Student> students = new ArrayList<Student>();
     ArrayList<CourseSession> courses = new ArrayList<CourseSession>();
-    
-
+   
     public void addCourse(CourseSession courseSession){
         courses.add(courseSession);
     }

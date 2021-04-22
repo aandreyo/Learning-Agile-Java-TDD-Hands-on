@@ -2,20 +2,28 @@ package StudentPackage.tests;
 
 import StudentPackage.models.*;
 import StudentPackage.controller.*;
-
-import java.util.ArrayList;
+import java.util.*;
 
 public class CourseSessionTest extends  junit.framework.TestCase{
 	private CourseSession courseSession1,courseSession2;
 	private Student student1,student2;
 	private CourseSessionController courseSessionController;
 	private String dept,deptNum;
-	
+	private Date startDate;
 	
 	
 	public void setUp() {
+			int year = 103;
+			int month = 0;
+			int date = 6;
+			startDate = new Date(year,month,date);
+			courseSession1 = new CourseSession("ENGL","101",startDate);
+		
+		
+		
+		
 		 	courseSessionController = new CourseSessionController();   
-		 	courseSession1 = new CourseSession("ENGL","101");
+		 	
 	        courseSession2 = new CourseSession("MATH","101");
 	        
 	        student1 = new Student(1,"Jane","Doe",0);
@@ -37,6 +45,7 @@ public class CourseSessionTest extends  junit.framework.TestCase{
 		  assertEquals("ENGL",dept);
 		  assertEquals("101", deptNum);
 		  assertEquals(2,courseSessionController.getNumOfStudents());
+		  assertEquals(startDate,courseSession1.getStartDate());
 
     }
 
@@ -53,7 +62,19 @@ public class CourseSessionTest extends  junit.framework.TestCase{
         for(int i=0; i<courseSessionController.getNumOfStudents(); i++) {
         	System.out.println(courseSessionController.getStudents(i));
         }
-
-
     }
+    
+    public void testEnrolledDate() {
+    	int year = 103;
+    	int month =3;
+    	int date = 25;
+    	Date sixteenWeeksOut = new Date(year,month,date);
+    	assertEquals(sixteenWeeksOut,courseSession1.getEndDate());
+    	
+    	
+    	
+    	
+    	
+    	
+    }	
 }
