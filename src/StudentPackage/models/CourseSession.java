@@ -9,7 +9,8 @@ public class CourseSession {
     private Date startDate;
 
 
-    public CourseSession(){}
+    public CourseSession(){
+    }
 
     public CourseSession(String department,String number){
         this.department=department;

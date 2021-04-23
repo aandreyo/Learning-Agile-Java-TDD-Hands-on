@@ -2,15 +2,17 @@ package Exercises.Exercise_1;
 
 public class Pawn {
 	private String color;
-	private static final String BLCK = "Black";
-	private static final String WHTE = "White";
-    private static final int TOTAL_PAWNS = 16;
+	private int pawnCount;
+	static final String BLCK = "Black";
+	static final String WHTE = "White";
+    static final int TOTAL_PAWNS = 16;
     
 	
     public Pawn(){} // default constructor
-
-    public Pawn(String color){
+    
+    public Pawn(String color,int pawnCount){
         this.color = color;
+        this.pawnCount=pawnCount;
     }
 
     public String getColor() {
@@ -20,4 +22,15 @@ public class Pawn {
     public void setColor(String color) {
         this.color = color;
     }
+    
+    public int getPawnCount() {
+		return pawnCount;
+	}
+
+	public void setPawnCount(int pawnCount) {
+		this.pawnCount = pawnCount;
+	}
+
+	
+    
 }

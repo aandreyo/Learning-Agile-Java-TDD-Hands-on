@@ -3,29 +3,51 @@ package Exercises.Exercise_1;
 
 
 public class PawnTest extends junit.framework.TestCase{
-	Pawn firstPlayer = new Pawn();
-	Pawn secondPlayer = new Pawn();
-	String black = "Black";
-    String white = "White";
+	private String COLOR_WHITE = Pawn.WHTE;
+    private String COLOR_BLACK = Pawn.BLCK;
+    private int PAWNS_COUNT = 16;
+    Board boards;
     
-    private String COLOR_WHITE;
-    private String COLOR_BLACK;
+	Pawn firstPlayerColor, secondPlayerColor;
+	
+    String white = "White";
+    String black = "Black";
     
     
     
 	public void setUp(){     
-		COLOR_WHITE = Pawn.WHTE;
-		COLOR_BLACK = Pawn.BLCK;
-		firstPlayer.setColor(COLOR_WHITE);
-		secondPlayer.setColor(COLOR_BLACK);
+		
+		boards = new Board();
+		
+		firstPlayerColor = new Pawn(COLOR_WHITE,PAWNS_COUNT);
+		secondPlayerColor = new Pawn(COLOR_BLACK,PAWNS_COUNT);
+		
 		
 	}
 	
+	
     public void testPlayerColor(){
-           
-        assertEquals(white,firstPlayer);
-        assertEquals(black,secondPlayer);
+    	
+       assertEquals(white, firstPlayerColor.getColor());
+       assertEquals(black, secondPlayerColor.getColor());
        
     }
-
+    
+    public void testBoardIfExist() {
+    	/*
+    	 * to check if pawn has zero added player
+    	 * assertEquals(2,boards.getPawnsTotal());
+    	 * 
+    	 * 
+    	 * */
+    	boards.addPawn(firstPlayerColor);
+    	boards.addPawn(secondPlayerColor);
+    	
+    	assertEquals(16,firstPlayerColor.getPawnCount());
+    	assertEquals(16,secondPlayerColor.getPawnCount());
+    	
+    	
+    }
+    
+    
 }
