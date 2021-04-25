@@ -6,23 +6,15 @@ import java.util.*;
 
 public class CourseSessionTest extends  junit.framework.TestCase{
 	private CourseSession courseSession1,courseSession2;
-	private Student student1,student2;
+	private Student student1,student2,student3,student4;
 	private CourseSessionController courseSessionController;
 	private String dept,deptNum;
 	private Date startDate;
-	
-	public Date createDate(int year,int month,int date) {
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.clear();
-		calendar.set(Calendar.YEAR, year);
-		calendar.set(Calendar.MONTH, month-1);
-		calendar.set(Calendar.DAY_OF_MONTH, date);
-		return calendar.getTime();
-	}
+	private RosterReport report;
 	
 	public void setUp() {
 			
-			startDate = createDate(2003,1,6);
+			startDate = report.createDate(2003,1,6);
 			courseSession1 = new CourseSession("ENGL","101",startDate);
 		
 		
@@ -33,9 +25,13 @@ public class CourseSessionTest extends  junit.framework.TestCase{
 	        
 	        student1 = new Student(1,"Jane","Doe",0);
 	        student2 = new Student(2,"John","Doe",0);
+	        student3 = new Student(3,"A","Duck",0);
+	        student4 = new Student(4,"B","Mouse",0);
 	        
 	        courseSessionController.enrollStudent(student1);
 	        courseSessionController.enrollStudent(student2);
+	        courseSessionController.enrollStudent(student3);
+	        courseSessionController.enrollStudent(student4);
 	        
 	        courseSessionController.addCourse(courseSession1);
 	        courseSessionController.addCourse(courseSession2);
@@ -49,11 +45,10 @@ public class CourseSessionTest extends  junit.framework.TestCase{
         
 		  assertEquals("ENGL",dept);
 		  assertEquals("101", deptNum);
-		  assertEquals(2,courseSessionController.getNumOfStudents());
+		  assertEquals(4,courseSessionController.getNumOfStudents());
 		  assertEquals(startDate,courseSession1.getStartDate());
 
     }
-
 
     public void testEnrolledStudents(){
 
@@ -71,10 +66,22 @@ public class CourseSessionTest extends  junit.framework.TestCase{
     
     public void testEnrolledDate() {
     	
-    	Date sixteenWeeksOut = createDate(2003,4,25);    	
+    	Date sixteenWeeksOut = report.createDate(2003,4,25);    	
     	assertEquals(sixteenWeeksOut,courseSession1.getEndDate());
-    	
-    	
-    	
+
     }	
+    
+    public void testRosterReport() {
+    	
+    	String rosterReport = report.getRosterReport();
+    	
+		
+		  assertEquals(RosterReport.ROSTER_REPORT_HEADER+ "Jane"
+		  +RosterReport.NEWLINE+ "John" +RosterReport.NEWLINE+ "A"
+		  +RosterReport.NEWLINE+ "B" +RosterReport.NEWLINE+
+		  RosterReport.ROSTER_REPORT_FOOTER+
+		  "4"+RosterReport.NEWLINE, rosterReport);
+		 
+    	
+    }
 }

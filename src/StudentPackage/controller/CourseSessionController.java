@@ -9,9 +9,10 @@ public class CourseSessionController {
 
     ArrayList<Student> students = new ArrayList<Student>();
     ArrayList<CourseSession> courses = new ArrayList<CourseSession>();
+    
    
     public void addCourse(CourseSession courseSession){
-        courses.add(courseSession);
+        courses.add(courseSession);	
     }
 
     public int getNumOfCourses(){
@@ -33,4 +34,7 @@ public class CourseSessionController {
     public CourseSession getCourses(int index) {
     	return courses.get(index);
     }
+    
+    
+    
 }
